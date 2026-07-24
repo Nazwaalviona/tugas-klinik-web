@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Pasien;
-use App\Models\Kunjungan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasienController; // Cukup 1 baris ini saja
+
+// ... kode route Anda di bawahnya ...
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -43,3 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/pasiens/{pasien}', [PasienController::class, 'update'])->name('pasiens.update');
     Route::delete('/pasiens/{pasien}', [PasienController::class, 'destroy'])->name('pasiens.destroy');
 });
+
+use App\Http\Controllers\PasienController;
+
+// Pastikan route POST untuk store sudah ada
+Route::post('/pasiens', [PasienController::class, 'store'])->name('pasiens.store');
